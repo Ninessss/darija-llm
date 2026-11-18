@@ -2,7 +2,7 @@
 
 Tokenisation, compréhension et modélisation des darijas algérienne, marocaine et tunisienne.
 
-Projet de groupe — matière Machine Learning, IMT Nord Europe.
+Projet de groupe — cours Large Language Models, IMT Nord Europe.
 
 ## Questions de recherche
 
@@ -27,11 +27,11 @@ darija-llm/
 
 | Notebook | Expérience | Responsable |
 | --- | --- | --- |
-| `00_donnees.ipynb` | Préparation du corpus | À compléter |
+| `00_donnees.ipynb` | Préparation du corpus | Islem |
 | `01_cout_tokens.ipynb` | Exp. 1 — coût de la darija en tokens | Ammar |
 | `02_tokenizer_bpe.ipynb` | Exp. 2 — tokenizer BPE maghrébin | Ammar |
 | `03_mini_gpt.ipynb` | Exp. 3 — mini-GPT from scratch et ablations | Ammar |
-| `04_classification.ipynb` | Exp. 4 — dialecte et sentiment | À compléter |
+| `04_classification.ipynb` | Exp. 4 — dialecte et sentiment | Ines |
 
 ## Installation
 
