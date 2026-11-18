@@ -1,0 +1,17 @@
+torch
+transformers
+tokenizers
+datasets
+sentencepiece
+accelerate
+bitsandbytes
+peft
+scikit-learn
+pandas
+pyarrow
+numpy
+matplotlib
+seaborn
+tqdm
+gradio
+python-dotenv
