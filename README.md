@@ -36,7 +36,7 @@ darija-llm/
 ## Installation
 
 ```bash
-git clone https://github.com/<organisation>/darija-llm.git
+git clone https://github.com/Ninessss/darija-llm.git
 cd darija-llm
 python -m venv .venv
 source .venv/bin/activate        # Windows : .venv\Scripts\activate
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 Sur Google Colab :
 
 ```python
-!git clone https://github.com/<organisation>/darija-llm.git
+!git clone https://github.com/Ninessss/darija-llm.git
 %cd darija-llm
 !pip install -q -r requirements.txt
 ```
