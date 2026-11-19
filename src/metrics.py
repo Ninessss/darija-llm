@@ -36,16 +36,27 @@ def parity(tokenizer, texts: Sequence[str], reference: Sequence[str]) -> float:
     return float(np.mean(ratios))
 
 
-def unk_or_byte_rate(tokenizer, texts: Iterable[str]) -> float:
-    """Part des tokens qui sont inconnus ou des octets bruts (<0x..> ou caractères de remplacement)."""
-    total, bad = 0, 0
+def is_broken_token(tokenizer, tok_id: int) -> bool:
+    """Vrai si le token est inconnu ([UNK]) ou ne forme pas un caractère complet.
+
+    Les tokenizers « byte-level » (GPT-2, Llama 3, Qwen) et ceux avec « byte fallback »
+    (Gemma) découpent les lettres rares en octets : décodé seul, un tel token donne
+    le caractère de remplacement U+FFFD. C'est le signe qu'une lettre arabe a été
+    coupée en morceaux.
+    """
     unk_id = getattr(tokenizer, "unk_token_id", None)
+    if unk_id is not None and tok_id == unk_id:
+        return True
+    return "\ufffd" in tokenizer.decode([tok_id])
+
+
+def unk_or_byte_rate(tokenizer, texts: Iterable[str]) -> float:
+    """Part des tokens inconnus ou réduits à des octets bruts (voir `is_broken_token`)."""
+    total, bad = 0, 0
     for t in texts:
-        ids = tokenizer.encode(t, add_special_tokens=False)
-        for tok_id, tok in zip(ids, tokenizer.convert_ids_to_tokens(ids)):
+        for tok_id in tokenizer.encode(t, add_special_tokens=False):
             total += 1
-            if (unk_id is not None and tok_id == unk_id) or tok.startswith("<0x") or "�" in tok:
-                bad += 1
+            bad += is_broken_token(tokenizer, tok_id)
     return bad / max(total, 1)
 
 
