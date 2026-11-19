@@ -11,3 +11,4 @@ Une ligne par résultat, notée le jour même.
 | 2026-11-19 | 4 | MADAR did.parquet 4 classes (DZ/MA/TN/MSA), TF-IDF char 2-5 (20k), nn.Linear, Adam lr=1e-3, batch 64, 20 epochs | Accuracy / F1 macro (test, 792 phrases) | 0.894 / 0.895 | 42 | 9dcf21a | Ines |
 | 2026-11-19 | 4 | MADAR, MLP 128 ReLU, AdamW, weight decay 0 / 0.01 / 0.1, arrêt anticipé | Accuracy validation | 0.902 dans les 3 cas (meilleure epoch 7) | 42 | 9dcf21a | Ines |
 | 2026-11-19 | 4 | MADAR, MLP 128 ReLU, weight decay 0, arrêt anticipé (epoch 7) | Accuracy / F1 macro (test) | 0.886 / 0.887 | 42 | 9dcf21a | Ines |
+| 2026-11-19 | 4 | MADAR, baseline vs MLP (arrêt anticipé), 3 seeds | Accuracy test (moyenne ± écart-type) | baseline 0.894 ± 0.001 / MLP 0.890 ± 0.003 | 42, 43, 44 | 800fb78 | Ines |
