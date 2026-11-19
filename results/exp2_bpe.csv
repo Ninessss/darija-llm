@@ -1,0 +1,85 @@
+tokenizer,famille,vocab_reel,test,tokens_total,fertilite,taux_octets,vs_llama3,taille_k,corpus,pretok
+GPT-2,référence,50257,FLORES darija ma. (arabe),220306,5.886757161179991,0.48381796228881646,2.44224873339205,,,
+GPT-2,référence,50257,FLORES darija tn. (arabe),219957,5.961378973900317,0.48624958514618766,2.5125980031189235,,,
+GPT-2,référence,50257,DODa test (arabe),119104,5.4682521463660985,0.5101759806555616,2.334550564620246,,,
+GPT-2,référence,50257,DODa test (arabizi),58615,2.662502838973427,0.0004435724643862493,1.053858175991005,,,
+Llama 3,référence,128256,FLORES darija ma. (arabe),90366,2.4146536981616076,0.00024345439656507978,1.0,,,
+Llama 3,référence,128256,FLORES darija tn. (arabe),87768,2.3787299780469957,0.00011393674232066357,1.0,,,
+Llama 3,référence,128256,DODa test (arabe),51309,2.35567696616317,0.006626517764914537,1.0,,,
+Llama 3,référence,128256,DODa test (arabizi),56079,2.5473086531910063,0.0,1.0,,,
+Qwen 2.5,référence,151665,FLORES darija ma. (arabe),91297,2.439530782385635,0.0012267653920720286,1.0118466286385226,,,
+Qwen 2.5,référence,151665,FLORES darija tn. (arabe),89098,2.4147762690733665,0.0019753529821095873,1.016842332327708,,,
+Qwen 2.5,référence,151665,DODa test (arabe),52563,2.413250080345255,0.00011414873580275098,1.026097851021207,,,
+Qwen 2.5,référence,151665,DODa test (arabizi),56635,2.572564160799455,0.0,1.0113876990065116,,,
+Gemma 2,référence,256000,FLORES darija ma. (arabe),82758,2.21136169303121,0.0,0.9171055663594793,,,
+Gemma 2,référence,256000,FLORES darija tn. (arabe),80486,2.181369759059002,0.0,0.9185298440194619,,,
+Gemma 2,référence,256000,DODa test (arabe),47814,2.1952160139571184,0.0,0.9343420977628529,,,
+Gemma 2,référence,256000,DODa test (arabizi),52157,2.3691573926868044,0.0,0.9314657656696123,,,
+DarijaBERT,référence,80000,FLORES darija ma. (arabe),54282,1.4504595981188542,0.00036844626211267084,0.6020347942409694,,,
+DarijaBERT,référence,80000,FLORES darija tn. (arabe),54753,1.4839417838848687,0.0004018044673351232,0.62530010417771,,,
+DarijaBERT,référence,80000,DODa test (arabe),26264,1.2058215876222396,3.8074931465123364e-05,0.520856809397735,,,
+DarijaBERT,référence,80000,DODa test (arabizi),58436,2.6543720190779014,0.00015401464850434664,1.0534727639881785,,,
+BPE 4k | arabe | standard,nous,4000,FLORES darija ma. (arabe),87645,2.341946344591706,0.011626447601118146,0.9698453264771135,4.0,arabe,standard
+BPE 4k | arabe | standard,nous,4000,FLORES darija tn. (arabe),92866,2.516898392823265,0.01265263928671419,1.0587542436809623,4.0,arabe,standard
+BPE 4k | arabe | standard,nous,4000,DODa test (arabe),34662,1.591386988659841,0.00017310022503029253,0.6895763715474884,4.0,arabe,standard
+BPE 4k | arabe | standard,nous,4000,DODa test (arabizi),124675,5.663184192595957,4.8125125325847205e-05,2.2491048205312127,4.0,arabe,standard
+BPE 4k | arabe | chiffres-mots,nous,4000,FLORES darija ma. (arabe),87815,2.3464888841385205,0.011581164949040598,0.9716575712715477,4.0,arabe,chiffres-mots
+BPE 4k | arabe | chiffres-mots,nous,4000,FLORES darija tn. (arabe),92592,2.5094723148223435,0.012690081216519785,1.055672491836832,4.0,arabe,chiffres-mots
+BPE 4k | arabe | chiffres-mots,nous,4000,DODa test (arabe),34039,1.56278407786603,0.00017626839801404272,0.6802591711951621,4.0,arabe,chiffres-mots
+BPE 4k | arabe | chiffres-mots,nous,4000,DODa test (arabizi),124675,5.663184192595957,4.8125125325847205e-05,2.2491048205312127,4.0,arabe,chiffres-mots
+BPE 8k | arabe | standard,nous,8000,FLORES darija ma. (arabe),79695,2.129515818725951,0.00917247004203526,0.8821189472482163,8.0,arabe,standard
+BPE 8k | arabe | standard,nous,8000,FLORES darija tn. (arabe),84043,2.277773260698702,0.01031614768630344,0.9583579205168521,8.0,arabe,standard
+BPE 8k | arabe | standard,nous,8000,DODa test (arabe),31397,1.4414856985446032,6.370035353696213e-05,0.6235361796208188,8.0,arabe,standard
+BPE 8k | arabe | standard,nous,8000,DODa test (arabizi),124136,5.638700885759709,4.833408519688084e-05,2.2412384320849004,8.0,arabe,standard
+BPE 8k | arabe | chiffres-mots,nous,8000,FLORES darija ma. (arabe),79806,2.132481829841813,0.009134651529960153,0.883460975804815,8.0,arabe,chiffres-mots
+BPE 8k | arabe | chiffres-mots,nous,8000,FLORES darija tn. (arabe),83726,2.269181776296176,0.010355206268064878,0.9549120301322948,8.0,arabe,chiffres-mots
+BPE 8k | arabe | chiffres-mots,nous,8000,DODa test (arabe),30707,1.4098067122721638,6.513172892174422e-05,0.6132792907534468,8.0,arabe,chiffres-mots
+BPE 8k | arabe | chiffres-mots,nous,8000,DODa test (arabizi),124136,5.638700885759709,4.833408519688084e-05,2.2412384320849004,8.0,arabe,chiffres-mots
+BPE 16k | arabe | standard,nous,16000,FLORES darija ma. (arabe),73499,1.9639536126549808,0.006870841780160274,0.8134636717909922,16.0,arabe,standard
+BPE 16k | arabe | standard,nous,16000,FLORES darija tn. (arabe),77713,2.106214597392742,0.006137969194343289,0.8861554925074429,16.0,arabe,standard
+BPE 16k | arabe | standard,nous,16000,DODa test (arabe),29105,1.3362563702309351,6.87167153410067e-05,0.5773285417423503,16.0,arabe,standard
+BPE 16k | arabe | standard,nous,16000,DODa test (arabizi),124058,5.635157846922553,4.8364474681197506e-05,2.239524605557542,16.0,arabe,standard
+BPE 16k | arabe | chiffres-mots,nous,16000,FLORES darija ma. (arabe),73549,1.9652896536981617,0.006838978096235163,0.8140597672626594,16.0,arabe,chiffres-mots
+BPE 16k | arabe | chiffres-mots,nous,16000,FLORES darija tn. (arabe),77004,2.086998943003496,0.006194483403459561,0.8782847262530596,16.0,arabe,chiffres-mots
+BPE 16k | arabe | chiffres-mots,nous,16000,DODa test (arabe),28330,1.300674900142326,7.05965407695023e-05,0.5656037540786035,16.0,arabe,chiffres-mots
+BPE 16k | arabe | chiffres-mots,nous,16000,DODa test (arabizi),124057,5.635112423347717,4.836486453807524e-05,2.2395163649312546,16.0,arabe,chiffres-mots
+BPE 32k | arabe | standard,nous,20456,FLORES darija ma. (arabe),71911,1.921520949123557,0.00702256956515693,0.7956203201705893,32.0,arabe,standard
+BPE 32k | arabe | standard,nous,20456,FLORES darija tn. (arabe),75992,2.059571238854107,0.006276976523844615,0.8659121033836207,32.0,arabe,standard
+BPE 32k | arabe | standard,nous,20456,DODa test (arabe),28492,1.308112575180203,7.019514249613927e-05,0.5642591233207692,32.0,arabe,standard
+BPE 32k | arabe | standard,nous,20456,DODa test (arabizi),124056,5.635066999772882,4.836525440123815e-05,2.239426502863642,32.0,arabe,standard
+BPE 32k | arabe | chiffres-mots,nous,21272,FLORES darija ma. (arabe),71678,1.9152949978623344,0.007017494907782025,0.7931080787274002,32.0,arabe,chiffres-mots
+BPE 32k | arabe | chiffres-mots,nous,21272,FLORES darija tn. (arabe),75000,2.0326855841938367,0.00636,0.8547438616450587,32.0,arabe,chiffres-mots
+BPE 32k | arabe | chiffres-mots,nous,21272,DODa test (arabe),27594,1.2668839814517239,7.247952453431905e-05,0.5499893989811027,32.0,arabe,chiffres-mots
+BPE 32k | arabe | chiffres-mots,nous,21272,DODa test (arabizi),124055,5.635021576198047,4.836564427068639e-05,2.2394182622373546,32.0,arabe,chiffres-mots
+BPE 4k | arabe+arabizi | standard,nous,4000,FLORES darija ma. (arabe),95543,2.552987387772552,0.02048292391907309,1.0576485399176292,4.0,arabe+arabizi,standard
+BPE 4k | arabe+arabizi | standard,nous,4000,FLORES darija tn. (arabe),100941,2.7357508740548013,0.02089339317026778,1.1508648699722637,4.0,arabe+arabizi,standard
+BPE 4k | arabe+arabizi | standard,nous,4000,DODa test (arabe),38490,1.7671364951104174,0.000831384775266303,0.7664035107150446,4.0,arabe+arabizi,standard
+BPE 4k | arabe+arabizi | standard,nous,4000,DODa test (arabizi),46892,2.130002271178742,0.00012795359549603344,0.8570489519290845,4.0,arabe+arabizi,standard
+BPE 4k | arabe+arabizi | chiffres-mots,nous,4000,FLORES darija ma. (arabe),96387,2.575539760581445,0.020282818222374387,1.067061023397771,4.0,arabe+arabizi,chiffres-mots
+BPE 4k | arabe+arabizi | chiffres-mots,nous,4000,FLORES darija tn. (arabe),101423,2.7488142667425537,0.020794099957603306,1.1567273366207478,4.0,arabe+arabizi,chiffres-mots
+BPE 4k | arabe+arabizi | chiffres-mots,nous,4000,DODa test (arabe),38495,1.7673660529819568,0.0008312767891934018,0.7688463192416783,4.0,arabe+arabizi,chiffres-mots
+BPE 4k | arabe+arabizi | chiffres-mots,nous,4000,DODa test (arabizi),42165,1.9152850329320918,0.00014229811454998222,0.7840298281982473,4.0,arabe+arabizi,chiffres-mots
+BPE 8k | arabe+arabizi | standard,nous,8000,FLORES darija ma. (arabe),86229,2.304109662248824,0.01181737002632525,0.9543524103213794,8.0,arabe+arabizi,standard
+BPE 8k | arabe+arabizi | standard,nous,8000,FLORES darija tn. (arabe),91374,2.4764615009350353,0.01281546172871933,1.0418254562528617,8.0,arabe+arabizi,standard
+BPE 8k | arabe+arabizi | standard,nous,8000,DODa test (arabe),34229,1.5715072769845277,0.00017528995880685967,0.6810582942300346,8.0,arabe+arabizi,standard
+BPE 8k | arabe+arabizi | standard,nous,8000,DODa test (arabizi),42949,1.950897115602998,9.313371673380056e-05,0.7829928547434656,8.0,arabe+arabizi,standard
+BPE 8k | arabe+arabizi | chiffres-mots,nous,8000,FLORES darija ma. (arabe),87345,2.3339300983326208,0.01164348274085523,0.9666729413919187,8.0,arabe+arabizi,chiffres-mots
+BPE 8k | arabe+arabizi | chiffres-mots,nous,8000,FLORES darija tn. (arabe),92290,2.5012873675366563,0.012688265250839744,1.0522831297906257,8.0,arabe+arabizi,chiffres-mots
+BPE 8k | arabe+arabizi | chiffres-mots,nous,8000,DODa test (arabe),34089,1.5650796565814242,0.00017600985655196692,0.6811895715459919,8.0,arabe+arabizi,chiffres-mots
+BPE 8k | arabe+arabizi | chiffres-mots,nous,8000,DODa test (arabizi),37219,1.6906200317965023,0.00010747199011257692,0.6938021868851645,8.0,arabe+arabizi,chiffres-mots
+BPE 16k | arabe+arabizi | standard,nous,16000,FLORES darija ma. (arabe),78769,2.104772338606242,0.009115261079866445,0.8721084303597413,16.0,arabe+arabizi,standard
+BPE 16k | arabe+arabizi | standard,nous,16000,FLORES darija tn. (arabe),83370,2.2595332953898692,0.010291471752428932,0.9508022095566963,16.0,arabe+arabizi,standard
+BPE 16k | arabe+arabizi | standard,nous,16000,DODa test (arabe),31234,1.4340021119324182,6.403278478581034e-05,0.6203790457099673,16.0,arabe+arabizi,standard
+BPE 16k | arabe+arabizi | standard,nous,16000,DODa test (arabizi),39938,1.8141267317737906,0.0001001552406229656,0.7258364998062635,16.0,arabe+arabizi,standard
+BPE 16k | arabe+arabizi | chiffres-mots,nous,16000,FLORES darija ma. (arabe),79947,2.1362494655835826,0.011757789535567314,0.8851402188865395,16.0,arabe+arabizi,chiffres-mots
+BPE 16k | arabe+arabizi | chiffres-mots,nous,16000,FLORES darija tn. (arabe),83887,2.2735452746835785,0.011491649480849239,0.9567316452830988,16.0,arabe+arabizi,chiffres-mots
+BPE 16k | arabe+arabizi | chiffres-mots,nous,16000,DODa test (arabe),30899,1.4186217345392773,0.00019418104145765236,0.6173721359991421,16.0,arabe+arabizi,chiffres-mots
+BPE 16k | arabe+arabizi | chiffres-mots,nous,16000,DODa test (arabizi),33374,1.5159663865546218,0.00011985377839036375,0.622920109932673,16.0,arabe+arabizi,chiffres-mots
+BPE 32k | arabe+arabizi | standard,nous,32000,FLORES darija ma. (arabe),72734,1.9435121846943137,0.006764374295377677,0.8054653210639434,32.0,arabe+arabizi,standard
+BPE 32k | arabe+arabizi | standard,nous,32000,FLORES darija tn. (arabe),77178,2.091714773558826,0.006063904221410246,0.880212586470496,32.0,arabe+arabizi,standard
+BPE 32k | arabe+arabizi | standard,nous,32000,DODa test (arabe),29039,1.333226206326615,6.887289507214436e-05,0.5757904451767143,32.0,arabe+arabizi,standard
+BPE 32k | arabe+arabizi | standard,nous,32000,DODa test (arabizi),37863,1.719872813990461,0.00010564403243271796,0.6840642218082204,32.0,arabe+arabizi,standard
+BPE 32k | arabe+arabizi | chiffres-mots,nous,32000,FLORES darija ma. (arabe),73744,1.9705002137665668,0.006644608374918638,0.8166694242726625,32.0,arabe+arabizi,chiffres-mots
+BPE 32k | arabe+arabizi | chiffres-mots,nous,32000,FLORES darija tn. (arabe),77562,2.1021221237498984,0.006033882571362265,0.8848905605815452,32.0,arabe+arabizi,chiffres-mots
+BPE 32k | arabe+arabizi | chiffres-mots,nous,32000,DODa test (arabe),28578,1.312060970570681,6.998390370214851e-05,0.5706545786761187,32.0,arabe+arabizi,chiffres-mots
+BPE 32k | arabe+arabizi | chiffres-mots,nous,32000,DODa test (arabizi),30496,1.3852373381785146,0.00013116474291710389,0.5676367828139073,32.0,arabe+arabizi,chiffres-mots
