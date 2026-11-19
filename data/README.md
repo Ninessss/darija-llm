@@ -1,6 +1,6 @@
 # Données
 
-Les données ne sont **jamais** versionnées : les licences de MADAR, FLORES+ et Atlaset interdisent de les republier.
+Les données ne sont **jamais** versionnées : MADAR n'est pas redistribuable, Atlaset et FLORES+ sont soumis à des conditions d'utilisation.
 Elles sont sur le Drive partagé du groupe (lecture seule) :
 
 ```
@@ -43,6 +43,7 @@ Pour y accéder depuis Colab : dans Drive, « Partagés avec moi » → clic dro
 | `group_id` | corpus parallèles : même valeur = même phrase traduite |
 | `usage` | `train_ok` ou `eval_only` (FLORES+ : jamais à l'entraînement) |
 | `n_words` | nombre de mots |
+| `text_raw` | texte d'origine, non normalisé, rempli uniquement pour `parallel_eval` (Exp. 1 : coût en tokens du texte tel qu'il est écrit) |
 
 ## Sources, licences et statut
 
@@ -60,7 +61,8 @@ Pour y accéder depuis Colab : dans Drive, « Partagés avec moi » → clic dro
 
 ## Choix de nettoyage (à citer dans le rapport)
 
-- **Normalisation** : NFKC, suppression des URL, e-mails, `@pseudos`, numéros, HTML ; lettres répétées 3+ → 2 ;
+- **Normalisation** : NFKC, suppression des URL, e-mails, `@pseudos`, numéros de téléphone (+212 / +213 / +216, 05-07…, 9 chiffres collés), HTML ;
+  lettres répétées 3+ → 2 (les chiffres ne sont pas touchés : « 2000 » reste « 2000 ») ;
   diacritiques et tatweel supprimés, alef أ إ آ ٱ → ا ; emojis gardés **seulement** pour le sentiment.
 - **Atlaset** : 676 595 textes **synthétiques ou traduits automatiquement** exclus (jeu généré par Gemini, NQ-Open-AYA,
   sharegpt, flan, alpaca, cot, wizardlm, oasst…) → 497 603 textes authentiques gardés.
