@@ -110,13 +110,20 @@ class GPT(nn.Module):
             n -= self.tok_emb.weight.numel() + self.pos_emb.weight.numel()
         return n
 
-    def forward(self, idx, targets=None, reduction="mean"):
+    def features(self, idx):
+        """États cachés du dernier bloc, après la normalisation finale : (B, T, n_embd).
+
+        Utilisé par le fine-tuning (classification) : ce sont les représentations apprises au pré-entraînement.
+        """
         B, T = idx.shape
         pos = torch.arange(T, device=idx.device)
         x = self.drop(self.tok_emb(idx) + self.pos_emb(pos))
         for blk in self.blocks:
             x = blk(x)
-        logits = self.head(self.ln_f(x))                 # logits bruts, pas de softmax (CrossEntropyLoss s'en charge)
+        return self.ln_f(x)
+
+    def forward(self, idx, targets=None, reduction="mean"):
+        logits = self.head(self.features(idx))           # logits bruts, pas de softmax (CrossEntropyLoss s'en charge)
         if targets is None:
             return logits, None
         loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), reduction=reduction)
@@ -268,3 +275,72 @@ def generate(model, tokenizer, prompt, max_new_tokens=60, temperature=0.8, top_k
 
 def config_dict(cfg):
     return asdict(cfg)
+
+
+# ----------------------------------------------------------------------------- rechargement
+
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+
+
+def load_tokenizer(name):
+    """Charge un tokenizer : dossier du dépôt (tokenizers/darija-bpe-16k) ou nom Hugging Face (gpt2).
+
+    Renvoie (tokenizer, eos_id).
+    """
+    from transformers import AutoTokenizer, PreTrainedTokenizerFast
+    path = name if os.path.isabs(name) else os.path.join(REPO_ROOT, name)
+    if os.path.isdir(path):
+        tok = PreTrainedTokenizerFast.from_pretrained(path)
+    elif os.path.isdir(name):
+        tok = PreTrainedTokenizerFast.from_pretrained(name)
+    else:
+        tok = AutoTokenizer.from_pretrained(name)
+    eos = tok.eos_token_id
+    if eos is None:
+        eos = tok.convert_tokens_to_ids("<|endoftext|>")
+    return tok, eos
+
+
+def load_model(ckpt_path, device="cpu", tokenizer=None):
+    """Recharge un mini-GPT sauvegardé par train_minigpt.py --save_ckpt.
+
+    Exemple :
+        model, tok, eos = load_model("runs/B_bpe16k/model.pt", device="cuda:0")
+        print(generate(model, tok, "واحد النهار", device="cuda:0", eos_id=eos))
+
+    `tokenizer` permet de forcer un autre chemin de tokenizer que celui enregistré dans le checkpoint
+    (utile si le dépôt a été cloné ailleurs).
+    """
+    ckpt = torch.load(ckpt_path, map_location=device, weights_only=True)
+    cfg = GPTConfig(**ckpt["config"])
+    model = GPT(cfg)
+    model.load_state_dict(ckpt["model"])
+    model.to(device).eval()
+    tok, eos = load_tokenizer(tokenizer or ckpt["tokenizer"])
+    assert len(tok) == cfg.vocab_size, (
+        f"Le tokenizer ({len(tok)} tokens) ne correspond pas au modèle ({cfg.vocab_size}) : "
+        "vérifie le chemin du tokenizer.")
+    return model, tok, eos
+
+
+# ----------------------------------------------------------------------------- classification (fine-tuning)
+
+class GPTClassifier(nn.Module):
+    """Mini-GPT + tête de classification, pour l'identification du dialecte.
+
+    La phrase passe dans le GPT ; on fait la moyenne des états cachés de ses vrais tokens
+    (le remplissage est ignoré grâce au masque), puis une couche linéaire donne un score par classe.
+    Le padding est placé à droite : avec l'attention causale, les vrais tokens ne le voient jamais.
+    """
+
+    def __init__(self, gpt: GPT, n_classes: int, dropout: float = 0.1):
+        super().__init__()
+        self.gpt = gpt
+        self.drop = nn.Dropout(dropout)
+        self.classifier = nn.Linear(gpt.cfg.n_embd, n_classes)
+
+    def forward(self, idx, mask):
+        h = self.gpt.features(idx)                                   # (B, T, C)
+        m = mask.unsqueeze(-1).to(h.dtype)                           # (B, T, 1)
+        pooled = (h * m).sum(1) / m.sum(1).clamp(min=1.0)            # moyenne sur les vrais tokens
+        return self.classifier(self.drop(pooled))                    # logits bruts (B, n_classes)
