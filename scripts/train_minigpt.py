@@ -49,6 +49,8 @@ def parse_args():
     # entraînement
     p.add_argument("--steps", type=int, default=3000)
     p.add_argument("--batch", type=int, default=32)
+    p.add_argument("--grad_accum", type=int, default=1,
+                   help="découpe chaque batch en N morceaux traités l'un après l'autre (même résultat, moins de mémoire GPU)")
     p.add_argument("--optim", default="adamw", choices=["sgd", "sgd_momentum", "rmsprop", "adam", "adamw"])
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--wd", type=float, default=0.1)
@@ -122,6 +124,8 @@ def main():
     n_all, n_core = model.n_params(False), model.n_params(True)
     print(f"Paramètres : {n_all / 1e6:.2f} M au total, dont {n_core / 1e6:.2f} M hors embeddings")
     opt = make_optimizer(model, a.optim, a.lr, a.wd)
+    assert a.batch % a.grad_accum == 0, "--batch doit être divisible par --grad_accum"
+    micro = a.batch // a.grad_accum           # taille des morceaux envoyés au GPU
 
     # ---------------------------------------------------------------- entraînement
     log, run_loss, n_run = [], 0.0, 0
@@ -129,7 +133,7 @@ def main():
     train_tokens = data["train"][0]
     for step in range(a.steps + 1):
         if step % a.eval_every == 0 or step == a.steps:
-            val_loss = estimate_loss(model, data["val"][0], a.batch, a.block, device)
+            val_loss = estimate_loss(model, data["val"][0], micro, a.block, device, n_batches=20 * a.grad_accum)
             row = {
                 "step": step,
                 "tokens_vus": step * a.batch * a.block,
@@ -150,21 +154,25 @@ def main():
             break
         for g in opt.param_groups:
             g["lr"] = lr_at(step, a.steps, a.lr, a.schedule)
-        x, y = get_batch(train_tokens, a.batch, a.block, device, rng)
-        _, loss = model(x, y)
         opt.zero_grad(set_to_none=True)
-        loss.backward()
+        step_loss = 0.0
+        for _ in range(a.grad_accum):         # accumulation de gradient : même gradient qu'un batch complet
+            x, y = get_batch(train_tokens, micro, a.block, device, rng)
+            _, loss = model(x, y)
+            (loss / a.grad_accum).backward()
+            step_loss += loss.item() / a.grad_accum
         if a.clip:
             torch.nn.utils.clip_grad_norm_(model.parameters(), a.clip)
         opt.step()
-        run_loss += loss.item()
+        run_loss += step_loss
         n_run += 1
     train_time = time.time() - t_start
 
     # ---------------------------------------------------------------- évaluation finale
     res = {}
     for s in ["val", "test"]:
-        res[s] = evaluate_bpc(model, data[s][0], data[s][1], a.block, device, max_tokens=a.max_eval_tokens)
+        res[s] = evaluate_bpc(model, data[s][0], data[s][1], a.block, device, batch_size=micro,
+                              max_tokens=a.max_eval_tokens)
         print(f"{s:5s} : {res[s]['bpc']:.4f} bits par caractère  (loss par token {res[s]['loss_par_token']:.3f})")
 
     samples = [generate(model, tok, "", device=device, eos_id=eos) for _ in range(a.n_samples)]
