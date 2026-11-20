@@ -12,3 +12,5 @@ Une ligne par résultat, notée le jour même.
 | 2026-11-19 | 4 | MADAR, MLP 128 ReLU, AdamW, weight decay 0 / 0.01 / 0.1, arrêt anticipé | Accuracy validation | 0.902 dans les 3 cas (meilleure epoch 7) | 42 | 9dcf21a | Ines |
 | 2026-11-19 | 4 | MADAR, MLP 128 ReLU, weight decay 0, arrêt anticipé (epoch 7) | Accuracy / F1 macro (test) | 0.886 / 0.887 | 42 | 9dcf21a | Ines |
 | 2026-11-19 | 4 | MADAR, baseline vs MLP (arrêt anticipé), 3 seeds | Accuracy test (moyenne ± écart-type) | baseline 0.894 ± 0.001 / MLP 0.890 ± 0.003 | 42, 43, 44 | 800fb78 | Ines |
+| 2026-11-20 | 4 | MADAR, baseline vs MLP, tous deux AdamW + arrêt anticipé, 3 seeds, GPU | Accuracy test (moyenne ± écart-type) | baseline 0.890 ± 0.002 / MLP 0.887 ± 0.004 | 42, 43, 44 | 624b686 | Ines |
+| 2026-11-20 | 4 | MADAR, variantes du MLP (profondeur, largeur, activation, lr), 3 seeds, GPU | Accuracy validation | entre 0.897 et 0.907 ; meilleurs : SiLU 0.907, ELU 0.906, lr 1e-4 0.906 | 42, 43, 44 | 624b686 | Ines |
