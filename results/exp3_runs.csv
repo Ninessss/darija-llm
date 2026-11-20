@@ -1,0 +1,3 @@
+run,groupe,tokenizer,optimiseur,lr,weight_decay,planning,batch,steps,norm,seed,params_M,params_hors_emb_M,val_bpc,test_bpc,caracteres_par_token,val_loss_finale,minutes
+A_sanity,,darija-bpe-16k,adamw,0.001,0.0,constant,32,500,layer,42,7.32,3.16,0.0257,0.0257,2.7,0.0289,3.0
+B_bpe16k,B,darija-bpe-16k,adamw,0.001,0.1,warmup_cosine,32,4000,layer,42,7.32,3.16,2.4748,2.5298,2.6,4.5969,13.9
